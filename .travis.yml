@@ -1,13 +1,7 @@
 dist: focal
 
-addons:
-  apt:
-    sources:
-      - sourceline: 'deb https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable'
-        key_url: 'https://download.docker.com/linux/ubuntu/gpg'
-    packages:
-      - docker-ce docker-ce-cli containerd.io
-    update: true
+services:
+  - docker
 
 before_install:
   - docker --version
