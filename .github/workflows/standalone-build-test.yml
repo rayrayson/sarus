@@ -15,7 +15,7 @@ jobs:
         shell: bash
 
 
-  check-version-and-docs:
+  standalone-unit-and-integration-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
