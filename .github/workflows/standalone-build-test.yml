@@ -1,0 +1,34 @@
+name: standalone
+
+on: [push]
+
+jobs:
+  check-version-and-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - run: |
+          . CI/utility_docker_functions.bash
+          sarus-build-images
+          sarus-check-version-and-docs $(pwd)
+        shell: bash
+
+
+  check-version-and-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - run: |
+          CI/check_host.sh
+          . ./CI/utility_docker_functions.bash Release gcc.cmake $(pwd) $(pwd)/cache standalone-build standalone-run
+          sarus-build-images
+          sarus-build-and-test
+        shell: bash
+      - name: Upload standalone archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: standalone-archive
+          path: |
+            sarus-Release.tar.gz
