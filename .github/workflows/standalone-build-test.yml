@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - run: |
           CI/check_host.sh
           . ./CI/utility_docker_functions.bash Release gcc.cmake $(pwd) $(pwd)/cache standalone-build standalone-run
@@ -36,3 +38,4 @@ jobs:
           name: standalone-archive
           path: |
             sarus-Release.tar.gz
+            standalone/README.md
