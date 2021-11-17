@@ -26,6 +26,7 @@ jobs:
           CI/check_host.sh
           . ./CI/utility_docker_functions.bash Release gcc.cmake $(pwd) $(pwd)/cache standalone-build standalone-run
           sarus-build-images
+          sarus-build
           sarus-utest
           sarus-itest-standalone
         shell: bash
